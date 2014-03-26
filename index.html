@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.0.min.css" />
+<link rel="stylesheet" href="css/jquery.mobile.theme-1.0.min.css" />
+<link rel="stylesheet" href="css/vanilla.css" />
+<!--script src="jquery-mobile/jquery-1.6.4.min.js"></script-->
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.mobile-1.0.min.js"></script>
+
+<script>
+        $(function() {
+
+            $("#enviadatos").click(function() {
+                var Nombre Alumno = $("#nom").val();
+               var Semestre = $("#semestre").val();
+          var Calificacion1 = $("#cal1").val();
+         var Calificacion2= $("#cal2").val();
+      var Calificacion3= $("#cal3").val();
+      var Calificacion4= $("#cal4").val();
+        $("#nom").val(" ");
+       $("#semestre").val(" ");
+        $("#cal1").val(" ");
+  $("#cal2").val(" ");
+  $("#cal3").val(" ");
+  $("#cal4").val(" ");
+                
+                    $.ajax({
+                      type: "POST",
+                      url: "conecta.php",
+                      data: ({Nombre:nom, Semestre:semestre,Calificacion1:cal1, Calificacion2:cal2, Calificacion3:cal3, Calificacion4:cal4 }),
+                      cache: false,
+                      dataType: "text",
+                      success: onSuccess
+                    });
+                
+            });
+
+        
+            function onSuccess(data)
+            {
+            
+        alert(data);
+            }
+
+        });
+    </script>
+
+</head>
+
+<body> 
+
+<div data-role="page" id="page">
+ <div data-role="header">
+  <h1>Registro</h1>
+ </div>
+
+<div data-role="fieldcontain">
+          <label for="Nombre">Nombre Alumno:</label>
+          <input type="text" name="nom" id="nom" value=""  />
+   </div>
+            
+            <div data-role="fieldcontain">
+          <label for="Semestre">Semestre:</label>
+          <input type="text" name="semestre" id="semestre" value=""  />
+   </div>
+        
+                  
+             <div data-role="fieldcontain">
+          <label for="Calificacion1">Calificacion 1:</label>
+          <input type="number" name="cal1" id="cal1" value=""  />
+   </div>
+               
+             <div data-role="fieldcontain">
+          <label for="Calificacion2">Calificacion 2:</label>
+          <input type="number" name="cal2" id="cal2" value=""  />
+   </div>
+             
+             <div data-role="fieldcontain">
+          <label for="Calificacion3">Calificacion 3:</label>
+          <input type="number" name="cal3" id="cal3" value=""  />
+   </div>
+
+             
+             <div data-role="fieldcontain">
+          <label for="Calificacion4">Calificacion 4:</label>
+          <input type="number" name="cal4" id="cal4" value=""  />
+   </div>
+  <div class="ui-body ui-body-b">
+  <fieldset class="ui-grid-a">
+
+    <div class="ui-block-b"><button type="button" data-theme="a" id="enviadatos">Registrar</button>
+            
+                       
+                </div>
+     </fieldset>
+        </div>
+
+ </div>
+</div>
+</body>
+</html>
